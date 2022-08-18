@@ -92,7 +92,7 @@ public class SpartanGetRequests {
         Assertions.assertEquals("text/plain;charset=UTF-8", response.contentType());
 
         // verify we have headers named date
-        //we use hasHeaderWithname method to verify header exist or not
+        //we use hasHeaderWithname method to verify header exist or not - it returns boolen
         Assertions.assertTrue(response.headers().hasHeaderWithName("Date"));
 
         //how to get header from response using header key?
