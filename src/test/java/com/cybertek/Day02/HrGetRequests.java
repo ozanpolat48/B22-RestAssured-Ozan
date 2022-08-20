@@ -1,6 +1,7 @@
 package com.cybertek.Day02;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,7 +44,7 @@ public class HrGetRequests {
     @Test
     public void test2(){
 
-        Response response = RestAssured.get("/regions/2");
+        Response response = RestAssured.given().accept(ContentType.JSON).when().get("/regions/2");
 
         //verify status code
         Assertions.assertEquals(200,response.statusCode());
