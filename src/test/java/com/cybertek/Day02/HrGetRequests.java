@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class HrGetRequests {
 
     //@BeforeAll is a annotation equals to @BeforeClass in testNg, we use with static method name
@@ -15,7 +18,7 @@ public class HrGetRequests {
     public static void init(){
 
         //save baseurl inside this variable so that we dont need to type each http method.
-        RestAssured.baseURI = "http://3.83.131.158:1000/ords/hr";
+        baseURI = "http://3.83.131.158:1000/ords/hr";
 
 
     }
@@ -24,7 +27,7 @@ public class HrGetRequests {
     @Test
     public void test1(){
 
-        Response response = RestAssured.get("/regions");
+        Response response = get("/regions");
 
         //print the status code
         System.out.println(response.statusCode());
@@ -44,18 +47,18 @@ public class HrGetRequests {
     @Test
     public void test2(){
 
-        Response response = RestAssured.given().accept(ContentType.JSON).when().get("/regions/2");
+        Response response = given().accept(ContentType.JSON).when().get("/regions/2");
 
         //verify status code
-        Assertions.assertEquals(200,response.statusCode());
+        assertEquals(200,response.statusCode());
 
         //verify content type
-        Assertions.assertEquals("application/json",response.contentType());
+        assertEquals("application/json",response.contentType());
 
         response.prettyPrint();
 
         //verify body contains Americas
-        Assertions.assertEquals(response.body().asString().contains("Americas"),true);
+        assertEquals(response.body().asString().contains("Americas"),true);
 
     }
 
